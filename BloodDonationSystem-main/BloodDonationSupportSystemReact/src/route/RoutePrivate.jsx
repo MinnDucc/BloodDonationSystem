@@ -1,15 +1,14 @@
 import { Navigate } from 'react-router-dom';
 
 const RoutePrivate = ({ children }) => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+   
+    const isLogin = localStorage.getItem('token') === 'true';
+    console.log("hhihi")
 
-    if (!isAuthenticated) {
-        return <Navigate to="/signin" />;
-    }
 
-    if (isAdmin) {
-        return <Navigate to="/admin" />;
+    if (isLogin) {
+         console.log("hhihi")
+        return <Navigate to="/user/home" />;
     }
 
     return children;

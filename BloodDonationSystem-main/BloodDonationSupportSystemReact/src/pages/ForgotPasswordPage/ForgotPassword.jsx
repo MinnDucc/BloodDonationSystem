@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import OtpInput from '../../components/OTPInput';
 
 
 export default function ForgotPasswordPage() {
@@ -106,7 +107,7 @@ export default function ForgotPasswordPage() {
               {getAccountType(account) === 'phone' ? `Số điện thoại: ${account}` : `Email: ${account}`}
             </p>
           </div>
-
+           <OtpInput/>
           <div className="mt-8 space-y-6">
             <div className="rounded-md bg-blue-50 p-4">
               <div className="text-sm text-blue-700">

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Layout from './layouts/Layout'
-import Home from './pages/Home'
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
-import Contact from './pages/Contact'
-import News from './pages/News'
-import ForgotPassword from './pages/ForgotPassword'
+import DefaultLayout from './layouts/DefaultLayout'
+import Home from './pages/DefautPage/DefaultDetails/Home'
+import Signin from './pages/LoginPage/Signin'
+import Signup from './pages/SignupPage/Signup'
+import Contact from './pages/DefautPage/DefaultDetails/Contact'
+import News from './pages/DefautPage/DefaultDetails/Contact'
+import ForgotPassword from './pages/ForgotPasswordPage/ForgotPassword'
+import UserLayout from './layouts/UserLayout'
+import RoutePrivate from './route/RoutePrivate'
 
 function App() {
   const [isOpenLogin, setIsOpenLogin] = useState(false)
@@ -15,15 +17,28 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout/> }>
-            <Route path='/' element={<Home/>} />
-            <Route path='/signin' element={<Signin/>}></Route>
-            <Route path='/signup' element={<Signup/>}></Route>
-            <Route path='/home' element={<Home/>}></Route>
-            <Route path='/contact' element={<Contact/>}></Route>
-            <Route path='/news' element={<News/>}></Route>
-            <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
+        <Route path='/' element={<DefaultLayout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/signin' element={<Signin />}></Route>
+          <Route path='/signup' element={<Signup />}></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='/contact' element={<Contact />}></Route>
+          <Route path='/news' element={<News />}></Route>
+          <Route path='/forgot-password' element={<ForgotPassword />}>
+          </Route>
         </Route>
+
+
+        <Route path='/user/*' element={<RoutePrivate>
+          <UserLayout />
+        </RoutePrivate>}>
+          <Route path='home' element={<Home />} />
+          <Route path='contact' element={<Home />}></Route>
+          <Route path='historis' element={<Contact />}></Route>
+          <Route path='news' element={<News />}></Route>
+        </Route>
+
+
       </Routes>
     </BrowserRouter>
   )

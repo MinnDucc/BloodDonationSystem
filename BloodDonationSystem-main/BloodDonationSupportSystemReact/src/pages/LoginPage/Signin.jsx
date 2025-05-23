@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Eye, EyeOff, ArrowRight, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 export default function LoginPage() {
   const [account, setAccount] = useState('');
@@ -27,7 +28,7 @@ export default function LoginPage() {
     if (validatePhone(account)) {
       return 'phone';
     } //else if (validateEmail(account)) {
-      //return 'email';
+    //return 'email';
     //}
     return null;
   };
@@ -54,7 +55,7 @@ export default function LoginPage() {
     if (e) {
       e.preventDefault();
     }
-    
+
     const newErrors = {};
     const accountType = getAccountType(account);
 
@@ -73,15 +74,21 @@ export default function LoginPage() {
     }
 
     setErrors(newErrors);
-
+    const login = async () => {
+        try {
+          const response = await axios.get('http://localhost:3001/data', {
+            account: 'Charlie',
+            password : password
+          });
+          console.log('Success', response.data);
+          return response.data
+        } catch (error) {
+          console.error('Error adding user:', error);
+        }
+      };
     if (Object.keys(newErrors).length === 0) {
-      // Xử lý đăng nhập thành công - ở đây chỉ hiển thị thông tin
-      alert(`Đăng nhập thành công với số điện thoại: ${account}`);
-      // Chuyển hướng đến trang chính
-      navigate('/home');
-      // Gọi API đăng nhập ở đây
-      // Giả sử bạn nhận được token từ server sau khi đăng ký thành công
-      localStorage.setItem('token', response.token);
+      const data = login();
+      localStorage.setItem('token', data && true);
     }
   };
 
@@ -109,9 +116,8 @@ export default function LoginPage() {
                   autoComplete="email tel"
                   value={account}
                   onChange={(e) => setAccount(e.target.value)}
-                  className={`block w-full appearance-none rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${
-                    errors.account ? 'border-red-300' : 'border-gray-300'
-                  }`}
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${errors.account ? 'border-red-300' : 'border-gray-300'
+                    }`}
                   //placeholder="Email hoặc số điện thoại"
                   placeholder="Số điện thoại"
                 />
@@ -133,9 +139,8 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`block w-full appearance-none rounded-md border px-3 py-2 pr-10 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${
-                    errors.password ? 'border-red-300' : 'border-gray-300'
-                  }`}
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 pr-10 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm ${errors.password ? 'border-red-300' : 'border-gray-300'
+                    }`}
                   placeholder="Mật khẩu"
                 />
                 <button

@@ -5,7 +5,7 @@ import AppBarHeader from '../AppBarHeader';
 
 
 export default function DefaultLayout() {
-    const [openSignin, setIsOpenLogin] = useState(false);
+    
     const pages = ['Home', 'News', 'Question', 'Contact']
     const settings = ['Profile', 'Account', 'Logout']
     return (

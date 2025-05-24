@@ -1,5 +1,5 @@
 // services/authService.js
-import axios from './axios';
+import axios from '../config/axios';
 
 export const login = async (username, password) => {
   try {

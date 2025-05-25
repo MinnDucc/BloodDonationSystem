@@ -1,17 +1,15 @@
 import { Box, Container, Typography } from "@mui/material";
+import BloodTypeSearch from "../../../components/BloodTypeSearch";
 
 export default function Home() {
     return (
         <>
-            <Container maxWidth="100%" sx={{ padding: 2 }}>
-                <img src="react.svg" alt="Logo" />
-            </Container>
 
-            <Box>
+            <Box sx={{ marginTop: 15 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Typography variant="h1">Trang chủ</Typography>
                 </Box>
-
+                <BloodTypeSearch/>
                 <Box
                     component="section"
                     sx={{

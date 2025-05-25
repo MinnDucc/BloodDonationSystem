@@ -9,10 +9,6 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPassword";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import MemberLayout from "../layouts/MemberLayout/Member";
 
-
-
-
-
 const CustomRoute = () => {
     return (
         <Routes>
@@ -21,6 +17,7 @@ const CustomRoute = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/Q-A" element={<QuestionAndAns />} />
+
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/reset-password" element={<ForgotPasswordPage/>} />
                 <Route path="/signup" element={<RegisterPage/>} />
@@ -30,10 +27,10 @@ const CustomRoute = () => {
                 <Route path="contact" element={<Contact />} />
                 <Route path="news" element={<News />} />
                 <Route path="Q-A" element={<QuestionAndAns />} />
+    
             </Route>
         </Routes>
     );
-
 }
 
 export default CustomRoute
